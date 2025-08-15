@@ -1,1 +1,1 @@
-export { ContentProvider } from "./provider";
+export { ContentProvider } from './provider';

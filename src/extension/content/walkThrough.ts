@@ -1,6 +1,6 @@
 import { CancellationTokenSource, commands, ExtensionContext, QuickPickItem, window, workspace } from 'vscode';
 import * as path from 'path';
-import { promises as fs } from "fs";
+import { promises as fs } from 'fs';
 import { notebookType } from '../const';
 import { ContentProvider } from '.';
 
