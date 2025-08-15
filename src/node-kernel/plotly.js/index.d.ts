@@ -271,7 +271,7 @@ export interface PlotlyHTMLElement extends HTMLElement {
             | 'plotly_redraw'
             | 'plotly_transitioning'
             | 'plotly_transitioninterrupted',
-        callback: () => void,
+        callback: () => void
     ): void;
     removeAllListeners: (handler: string) => void;
 }
@@ -307,13 +307,13 @@ export function newPlot(
     root: Root,
     data: Data[],
     layout?: Partial<Layout>,
-    config?: Partial<Config>,
+    config?: Partial<Config>
 ): Promise<PlotlyHTMLElement>;
 export function plot(
     root: Root,
     data: Data[],
     layout?: Partial<Layout>,
-    config?: Partial<Config>,
+    config?: Partial<Config>
 ): Promise<PlotlyHTMLElement>;
 export function relayout(root: Root, layout: Partial<Layout>): Promise<PlotlyHTMLElement>;
 export function redraw(root: Root): Promise<PlotlyHTMLElement>;
@@ -324,29 +324,29 @@ export function update(
     root: Root,
     traceUpdate: Data,
     layoutUpdate: Partial<Layout>,
-    traces?: number[] | number,
+    traces?: number[] | number
 ): Promise<PlotlyHTMLElement>;
 export function addTraces(
     root: Root,
     traces: Data | Data[],
-    newIndices?: number[] | number,
+    newIndices?: number[] | number
 ): Promise<PlotlyHTMLElement>;
 export function deleteTraces(root: Root, indices: number[] | number): Promise<PlotlyHTMLElement>;
 export function moveTraces(
     root: Root,
     currentIndices: number[] | number,
-    newIndices?: number[] | number,
+    newIndices?: number[] | number
 ): Promise<PlotlyHTMLElement>;
 export function extendTraces(
     root: Root,
     update: Data | Data[],
     indices: number | number[],
-    maxPoints?: number,
+    maxPoints?: number
 ): Promise<PlotlyHTMLElement>;
 export function prependTraces(
     root: Root,
     update: Data | Data[],
-    indices: number | number[],
+    indices: number | number[]
 ): Promise<PlotlyHTMLElement>;
 export function toImage(root: Root, opts: ToImgopts): Promise<string>;
 export function downloadImage(root: Root, opts: DownloadImgopts): Promise<string>;
@@ -354,7 +354,7 @@ export function react(
     root: Root,
     data: Data[],
     layout?: Partial<Layout>,
-    config?: Partial<Config>,
+    config?: Partial<Config>
 ): Promise<PlotlyHTMLElement>;
 export function addFrames(root: Root, frames: Array<Partial<Frame>>): Promise<PlotlyHTMLElement>;
 export function deleteFrames(root: Root, frames: number[]): Promise<PlotlyHTMLElement>;
@@ -1308,7 +1308,19 @@ export interface TransformStyle {
 
 export interface TransformAggregation {
     target: string;
-    func?: 'count' | 'sum' | 'avg' | 'median' | 'mode' | 'rms' | 'stddev' | 'min' | 'max' | 'first' | 'last' | undefined;
+    func?:
+        | 'count'
+        | 'sum'
+        | 'avg'
+        | 'median'
+        | 'mode'
+        | 'rms'
+        | 'stddev'
+        | 'min'
+        | 'max'
+        | 'first'
+        | 'last'
+        | undefined;
     funcmode?: 'sample' | 'population' | undefined;
     enabled?: boolean | undefined;
 }
@@ -1401,12 +1413,14 @@ export interface PlotMarker {
     pad?: Partial<Padding> | undefined;
     width?: number | undefined;
     colorbar?: Partial<ColorBar> | undefined;
-    gradient?: {
-        type: 'radial' | 'horizontal' | 'vertical' | 'none';
-        color: Color;
-        typesrc: any;
-        colorsrc: any;
-    } | undefined;
+    gradient?:
+        | {
+              type: 'radial' | 'horizontal' | 'vertical' | 'none';
+              color: Color;
+              typesrc: any;
+              colorsrc: any;
+          }
+        | undefined;
 }
 
 export type ScatterMarker = PlotMarker;
@@ -2193,29 +2207,29 @@ export interface Slider {
 }
 
 export interface CurrentValue {
-  /**
-   * Shows the currently-selected value above the slider.
-   */
-  visible: boolean;
-  /**
-   * The alignment of the value readout relative to the length of the slider.
-   */
-  xanchor: 'left' | 'center' | 'right';
-  /**
-   * The amount of space, in pixels, between the current value label
-   * and the slider.
-   */
-  offset: number;
-  /**
-   * When currentvalue.visible is true, this sets the prefix of the label.
-   */
-  prefix: string;
-  /**
-   * When currentvalue.visible is true, this sets the suffix of the label.
-   */
-  suffix: string;
-  /**
-   * Sets the font of the current value label text.
-   */
-  font: Partial<Font>;
+    /**
+     * Shows the currently-selected value above the slider.
+     */
+    visible: boolean;
+    /**
+     * The alignment of the value readout relative to the length of the slider.
+     */
+    xanchor: 'left' | 'center' | 'right';
+    /**
+     * The amount of space, in pixels, between the current value label
+     * and the slider.
+     */
+    offset: number;
+    /**
+     * When currentvalue.visible is true, this sets the prefix of the label.
+     */
+    prefix: string;
+    /**
+     * When currentvalue.visible is true, this sets the suffix of the label.
+     */
+    suffix: string;
+    /**
+     * Sets the font of the current value label text.
+     */
+    font: Partial<Font>;
 }

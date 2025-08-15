@@ -1,7 +1,7 @@
 import { workspace } from 'vscode';
 import { Configuration } from './server/types';
 import * as tmp from 'tmp';
-import { promises as fs } from "fs";
+import { promises as fs } from 'fs';
 import { registerDisposable } from './utils';
 
 export function getConfiguration(): Configuration {

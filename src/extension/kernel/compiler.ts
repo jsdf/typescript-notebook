@@ -208,7 +208,7 @@ export namespace Compiler {
             const matchingItem =
                 typeof location.column === 'number'
                     ? // Find the next closes column we have, we if cannot find an exact match.
-                    map.get(location.column) || map.get(location.column - 1) || map.get(location.column + 1)
+                      map.get(location.column) || map.get(location.column - 1) || map.get(location.column + 1)
                     : map.get(0)!;
             if (matchingItem) {
                 mappedLocation.line = matchingItem.generatedLine;
@@ -232,8 +232,8 @@ export namespace Compiler {
     export function getCodeObject(cell: NotebookCell) {
         return mapFromCellToPath.get(cell)!;
     }
-    function getNotebookCwd(notebook: NotebookDocument){
-        if (notebook.isUntitled){
+    function getNotebookCwd(notebook: NotebookDocument) {
+        if (notebook.isUntitled) {
             return workspace.workspaceFolders?.length ? workspace.workspaceFolders[0].uri.fsPath : os.tmpdir();
         }
         return path.dirname(notebook.uri.fsPath);
@@ -532,9 +532,10 @@ function createCodeObject(cell: NotebookCell) {
         sourceFilename: '',
         sourceTsFilename: '',
         sourceMapFilename: '',
-        friendlyName: cwd && !cell.notebook.isUntitled
-            ? `${path.relative(cwd, notebookFSPath)}?cell=${cell.index + 1}`
-            : `${notebookFSPath}?cell=${cell.index + 1}`,
+        friendlyName:
+            cwd && !cell.notebook.isUntitled
+                ? `${path.relative(cwd, notebookFSPath)}?cell=${cell.index + 1}`
+                : `${notebookFSPath}?cell=${cell.index + 1}`,
         textDocumentVersion: -1
     };
     if (!tmpDirectory) {
@@ -671,15 +672,15 @@ export type VariableDeclaration = BaseNode<'VariableDeclaration'> & {
 };
 type VariableDeclarator = BaseNode<'VariableDeclarator'> & {
     id:
-    | (BaseNode<string> & { name: string; loc: BodyLocation; type: 'Identifier' | '<other>' })
-    | (BaseNode<'ObjectPattern'> & {
-        name: string;
-        properties: { type: 'Property'; key: { name: string }; value: { name: string } }[];
-    })
-    | (BaseNode<'ArrayPattern'> & {
-        name: string;
-        elements: { name: string; type: 'Identifier' }[];
-    });
+        | (BaseNode<string> & { name: string; loc: BodyLocation; type: 'Identifier' | '<other>' })
+        | (BaseNode<'ObjectPattern'> & {
+              name: string;
+              properties: { type: 'Property'; key: { name: string }; value: { name: string } }[];
+          })
+        | (BaseNode<'ArrayPattern'> & {
+              name: string;
+              elements: { name: string; type: 'Identifier' }[];
+          });
     init?: { loc: BodyLocation };
     loc: BodyLocation;
 };
@@ -693,14 +694,14 @@ type BlockStatement = {
 };
 type ExpressionStatement = BaseNode<'ExpressionStatement'> & {
     expression:
-    | (BaseNode<'CallExpression'> & {
-        callee:
-        | (BaseNode<'ArrowFunctionExpression'> & { body: BlockStatement })
         | (BaseNode<'CallExpression'> & {
-            body: BlockStatement;
-            callee: { name: string; loc: BodyLocation };
-        });
-    })
-    | BaseNode<'other'>;
+              callee:
+                  | (BaseNode<'ArrowFunctionExpression'> & { body: BlockStatement })
+                  | (BaseNode<'CallExpression'> & {
+                        body: BlockStatement;
+                        callee: { name: string; loc: BodyLocation };
+                    });
+          })
+        | BaseNode<'other'>;
     loc: BodyLocation;
 };
