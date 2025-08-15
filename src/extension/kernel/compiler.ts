@@ -80,8 +80,9 @@ export namespace Compiler {
     ): string {
         if (typeof error === 'object' && error.name === 'InvalidCode_CodeExecution') {
             error.name = 'SyntaxError';
-            error.stack = '';
-            return '';
+            // Don't clear the stack entirely - preserve the error message for cell output
+            // The original error message from vm.Script contains useful syntax error information
+            return error.message || 'TypeScript compilation failed';
         }
         let stackTrace = (typeof error === 'string' ? error : error?.stack) || '';
         let lineFound = false;
